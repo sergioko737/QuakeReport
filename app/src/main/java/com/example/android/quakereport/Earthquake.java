@@ -6,20 +6,34 @@ package com.example.android.quakereport;
 
 public class Earthquake {
     // Variable to store magnitude
-    private double eqMagnitude;
+    private double mMagnitude;
 
     // Variable to store location
-    private String eqLocation;
+    private String mLocation;
 
     // Variable to store date
-    private long eqDate;
+    private long mTimeInMilliseconds;
 
-    /* Constructor
-
-     */
+    /** Create a new Earthquake object
+     * @param magnitude strength of earthquake
+     * @param location name of place
+     * @param date date of earthquake
+    */
     public Earthquake(double magnitude, String location, long date){
-        eqMagnitude = magnitude;
-        eqLocation = location;
-        eqDate = date;
+        mMagnitude = magnitude;
+        mLocation = location;
+        mTimeInMilliseconds = date;
+    }
+
+    public double getMagnitude() {
+        return mMagnitude;
+    }
+
+    public String getLocation() {
+        return mLocation;
+    }
+
+    public long getTimeInMilliseconds() {
+        return mTimeInMilliseconds;
     }
 }
