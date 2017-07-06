@@ -7,30 +7,24 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
- * Created by S on 2017.07.06..
+ * An {@link EarthquakeAdapter} knows how to create alist item layout for each earthquake
+ * in the data source (a list of {@link Earthquake} objects).
+ *
+ * These list item layouts will be provided to an adapter view like ListView
+ * to be displayed to the user.
  */
-
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
-
-    /**
-     * The part of the location string from the USGS service that we use to determine
-     * whether or not there is a location offset present ("5km N of Cairo, Egypt").
-     */
-    private static final String LOCATION_SEPARATOR = " of ";
 
     /**
      * Constructs a new {@link EarthquakeAdapter}.
      *
-     * @param context of the app
+     * @param context     of the app
      * @param earthquakes is the list of earthquakes, which is the data source of the adapter
      */
-    public EarthquakeAdapter(Context context, List<Earthquake> earthquakes){
+    public EarthquakeAdapter(Context context, List<Earthquake> earthquakes) {
         super(context, 0, earthquakes);
     }
 
@@ -39,11 +33,11 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
      * in the list of earthquakes.
      */
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(int position, View convertView, ViewGroup parent) {
         // Check if there is an existiong list item view (called convertView) that we can reuse,
         // otherwise, if convertView is null, then inflate a new list item layout.
         View listItemView = convertView;
-        if (listItemView == null){
+        if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.earthquake_list_item, parent, false);
         }
@@ -53,42 +47,20 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
         // Find the TextView with view ID magnitude
         TextView magnitudeView = (TextView) listItemView.findViewById(R.id.magnitude);
-        // Format the magnitude to show 1 decimal place
-        String formattedMagnitude = formatMagnitude(currentEarthquake.getMagnitude());
         // Display the magnitude of the current earthquake in that TextView
-        magnitudeView.setText(formattedMagnitude);
+        magnitudeView.setText(currentEarthquake.getMagnitude());
 
-        // Get the original location string from the Earthquake object,
-        // which can be in the format of "5km N of Cairo, Egypt" or "Pacific-Antarctic Ridge".
-        String originalLocation = currentEarthquake.getLocation();
-
-        // Create a new Date object from the time in milliseconds of the earthquake
-        Date dateObject = new Date(currentEarthquake.getTimeInMilliseconds());
+        // Find the TextView with ID primary_location
+        TextView locationView = (TextView) listItemView.findViewById(R.id.location);
+        // Display the location string from the Earthquake object.
+        locationView.setText(currentEarthquake.getLocation());
 
         // Find the TextView with view ID date
         TextView dateView = (TextView) listItemView.findViewById(R.id.date);
-        // Format the date string (i.e. "Mar 3, 1984")
-        String formattedDate = formatDate(dateObject);
         // Display the date of the current earthquake in that TextView
-        dateView.setText(formattedDate);
+        dateView.setText(currentEarthquake.getDate());
 
         // Return the list item view that is now showing the appopriate data
         return listItemView;
-    }
-
-    /**
-     * Return the formatted magnitude string showing 1 decimal place (i.e. "3.2")
-     * from a cecimal magnitude value.
-     * @param magnitude value of magnitude
-     * @return
-     */
-    private String formatMagnitude(double magnitude){
-        DecimalFormat magnitudeFormat = new DecimalFormat("0.0");
-        return magnitudeFormat.format(magnitude);
-    }
-
-    private String formatDate(Date dateObject){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy");
-        return dateFormat.format(dateObject);
     }
 }
