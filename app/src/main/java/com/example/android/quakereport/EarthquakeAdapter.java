@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,10 +57,23 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         String formattedMagnitude = formatMagnitude(currentEarthquake.getMagnitude());
         // Display the magnitude of the current earthquake in that TextView
         magnitudeView.setText(formattedMagnitude);
-        
+
         // Get the original location string from the Earthquake object,
         // which can be in the format of "5km N of Cairo, Egypt" or "Pacific-Antarctic Ridge".
         String originalLocation = currentEarthquake.getLocation();
+
+        // Create a new Date object from the time in milliseconds of the earthquake
+        Date dateObject = new Date(currentEarthquake.getTimeInMilliseconds());
+
+        // Find the TextView with view ID date
+        TextView dateView = (TextView) listItemView.findViewById(R.id.date);
+        // Format the date string (i.e. "Mar 3, 1984")
+        String formattedDate = formatDate(dateObject);
+        // Display the date of the current earthquake in that TextView
+        dateView.setText(formattedDate);
+
+        // Return the list item view that is now showing the appopriate data
+        return listItemView;
     }
 
     /**
