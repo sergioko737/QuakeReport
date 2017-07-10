@@ -14,16 +14,22 @@ public class Earthquake {
     // Variable to store date
     private long mTimeInMilliseconds;
 
-    /** Create a new Earthquake object
-     * @param magnitude strength of earthquake
-     * @param location name of place
+    // Variable to store link to webpage
+    private String mUrl;
+
+    /**
+     * Create a new Earthquake object
+     *
+     * @param magnitude          strength of earthquake
+     * @param location           name of place
      * @param timeInMilliseconds is the time in milliseconds (from the Epoch) when the earthquake
-     * happened
-    */
-    public Earthquake(double magnitude, String location, long timeInMilliseconds){
+     *                           happened
+     */
+    public Earthquake(double magnitude, String location, long timeInMilliseconds, String url) {
         mMagnitude = magnitude;
         mLocation = location;
         mTimeInMilliseconds = timeInMilliseconds;
+        mUrl = url;
     }
 
     public double getMagnitude() {
@@ -37,4 +43,6 @@ public class Earthquake {
     public long getTimeInMilliseconds() {
         return mTimeInMilliseconds;
     }
+
+    public String getUrl() { return mUrl;}
 }
