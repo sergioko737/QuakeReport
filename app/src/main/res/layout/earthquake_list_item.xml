@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Layout for a single list item that displays an earthquake -->
+<?xml version="1.0" encoding="utf-8"?><!-- Layout for a single list item that displays an earthquake -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     android:padding="16dp">
 
     <TextView
@@ -12,10 +11,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        tools:text="8.9"/>
+        tools:text="8.9" />
 
     <TextView
-        android:id="@+id/location"
+        android:id="@+id/location_offset"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="30km S of" />
+
+    <TextView
+        android:id="@+id/primary_location"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -33,5 +39,5 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        tools:text="3:00 PM"/>
+        tools:text="3:00 PM" />
 </LinearLayout>
