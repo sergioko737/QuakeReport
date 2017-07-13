@@ -32,17 +32,31 @@ public class Earthquake {
         mUrl = url;
     }
 
+    /**
+     * @return the magnitude of the earthquake as double
+     */
     public double getMagnitude() {
         return mMagnitude;
     }
 
+    /**
+     * @return the location of the earthquake as String
+     */
     public String getLocation() {
         return mLocation;
     }
 
+    /**
+     * @return the time of the earthquake
+     */
     public long getTimeInMilliseconds() {
         return mTimeInMilliseconds;
     }
 
-    public String getUrl() { return mUrl;}
+    /**
+     * Returns the website URL to find more information about the earthquake.
+     */
+    public String getUrl() {
+        return mUrl;
+    }
 }
